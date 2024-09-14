@@ -1,12 +1,17 @@
 import './App.css';
 import Navbar from "./Components/Navbar/Navbar"
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Components/Home/Home';
 function App() {
   return (
     <div>
       <Navbar />
-      <h3 className='text-4xl font-bold text-black-500 font-extrabold'>
-      Welcome to the smartcart!!!
-      </h3>
+      <Router >
+        <Routes >
+          <Route path="/" element={<Home />}></Route>
+        </Routes>
+
+      </Router>
     </div>
   );
 }
