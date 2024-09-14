@@ -33,7 +33,7 @@ const Footer = () => {
                 <li><Link to=""><img src={whatsapp} alt=""></img>
                 </Link></li>
             </ul>
-            <div className="text-xs text-gray-500 text-lg">
+            <div className="copyright text-xs text-gray-500 text-lg mb-10 ">
             &copy;2024 by UrbanStyling. <br />
                 All Rights Reserved Proudly by MIT Students
             </div>

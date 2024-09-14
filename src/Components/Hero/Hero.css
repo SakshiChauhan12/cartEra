@@ -1,0 +1,43 @@
+.button{
+    background-color: #ff4141;
+    color: white;
+    border-radius: 75px;
+
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero {
+    height: 100vh;
+    background: linear-gradient(180deg, white, rgba(233, 189, 189, 0.6) 60%);
+    animation: fadeIn 1s ease-in-out;
+}
+
+//part1
+/* @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.hero{
+    height: 100vh;
+    background: linear-gradient(180deg, white, rgba(233, 189, 189, 0.6) 60%);
+    animation : fadeIn ls ease-in-out
+} */
+.hero-right{
+    display: flex;
+    flex: 0.5;
+}
