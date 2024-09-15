@@ -35,7 +35,7 @@ import p34_img from "./products/product_34.png";
 import p35_img from "./products/product_35.png";
 import p36_img from "./products/product_36.png";
 
-let all_products = [
+let AllProducts = [
   {
     id: 1,
     name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
@@ -362,4 +362,4 @@ let all_products = [
   },
 ];
 
-export default all_products;
+export default AllProducts;

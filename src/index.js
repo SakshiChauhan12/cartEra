@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ShopContextProvider from './Context/Context';
+import MenuContextProvider from './Context/Menu';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <ShopContextProvider>
+    <MenuContextProvider >
+
     <App />
+    </MenuContextProvider>
+    </ShopContextProvider>
   </React.StrictMode>
 );
 

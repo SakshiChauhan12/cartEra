@@ -16,12 +16,12 @@ function App() {
       <Navbar />
         <Routes >
           <Route path="/" element={<Shop />}></Route>
-          <Route path="/contact" element={<Contact />}></Route>
+          {/* <Route path="/contact" element={<Contact />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/loginsignup" element={<LoginSignup />}></Route>
           <Route path="/product" element={<Product />}></Route>
           <Route path="/shopcategory" element={<ShopCategory />}></Route>
-          <Route path="/home" element={<Home />}></Route>
+          <Route path="/home" element={<Home />}></Route> */}
         </Routes>
 
       <Footer />

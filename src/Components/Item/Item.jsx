@@ -2,7 +2,7 @@
 import react from "react";
 import "./Item.css"
 const Item = ({product}) => {
-    console.log(product)
+    console.log("This is array",product)
     return ( 
         <div className="item">
             {product.map(product_display =>(
