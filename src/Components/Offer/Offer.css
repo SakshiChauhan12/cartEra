@@ -1,0 +1,13 @@
+.button{
+    background-color: #ff4141;
+    color: white;
+    border-radius: 75px;
+}
+.offer{
+    background: linear-gradient(180deg, white, rgba(233, 189, 189, 0.6) 60%); 
+}
+.offer-right{
+    display: flex;
+    flex: 0.4;     /*grow:0 shrink:1 basis:30%*/
+    /* margin-top: 20px; */
+}

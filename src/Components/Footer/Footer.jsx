@@ -1,6 +1,6 @@
 import react from "react";
 import { Link } from "react-router-dom";
-import logo from "../Assets/logo.png"
+import logo from "../Assets/Navbar/logo.png"
 import instagram from "../Assets/Footer/instagram_icon.png"
 import pinterest from "../Assets/Footer/pinterest_icon.png"
 import whatsapp from "../Assets/Footer/whatsapp_icon.png" 
