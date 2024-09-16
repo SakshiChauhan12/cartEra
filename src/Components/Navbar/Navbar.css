@@ -4,7 +4,7 @@
     padding: 16px;
     box-shadow: 0px 1px 3px -2px cyan;
     margin-bottom : 8px;
-    background: linear-gradient(90deg, white, #f22f2f 200%);
+    /* background: linear-gradient(90deg, white, #f22f2f 200%); */
 }
 .navlogo{
     display: flex;
@@ -41,6 +41,10 @@
     justify-content: space-around;
     gap: 3px;
     cursor: pointer;
+}
+.navmenu Link:hover{
+    transition: scale(1.05);
+    /* background-color: black; */
 }
 .navmenu hr{
     border: none;
