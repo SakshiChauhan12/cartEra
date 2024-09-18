@@ -1,0 +1,29 @@
+
+/* src/Components/Breadcrum/Breadcrum.css */
+.breadcrum {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #555;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .breadcrum img {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .breadcrum a {
+    color: #ff4141;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .breadcrum a:hover {
+    text-decoration: underline;
+  }
+  

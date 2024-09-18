@@ -7,14 +7,16 @@ const LoginSignup = () => {
                 <div className="text-center font-semibold text-4xl my-14 h-8">
                     Sign Up
                 </div>
-                <div className="input-boxes my-3 mx-12 flex-col space-y-4">
-                <input type="text" placeholder="Username" /> <br />    <input type="email"
+                <div className="input-boxes my-3 mx-12 flex-col space-y-6">
+                <input type="text" 
+                    placeholder="Username" /> <br />   
+                <input type="email"
                     placeholder="Email" /> <br />
                 <input type="Password"
                     placeholder="Password" /> <br />
                 </div>
-                <div className="flex pl-11">
-                    <input type="checkbox" className="p-4"/>
+                <div className="flex pl-14 p-2">
+                    <input type="checkbox" className="p-8"/>
                     <div className="flex font-semibold text-gray-500 ">
                         <div className="accept ml-2">
                             I accept the
