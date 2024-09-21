@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import AllProducts from "../../Components/Assets/AllProduct";
 import BreadCrum from "../../Components/BreadCrum/BreadCrum";
+import ProductDisplay from "../../Components/ProductDisplay/ProductDisplay";
+import Description from "../../Components/Description/Descritption";
 const Product = () => {
     const {id} = useParams(); // this is give the array with the id as the key and value as the string of the  exact value of id;
     console.log(id,typeof id);
@@ -11,6 +13,8 @@ const Product = () => {
     return ( 
         <h3 className='text-4xl font-bold text-black-500 font-extrabold'>
             <BreadCrum product={product}/>
+            <ProductDisplay product={product}/>
+            <Description />
         </h3>
      );
 }

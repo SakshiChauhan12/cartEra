@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const BreadCrum = ({product}) => {
     console.log(product, "in breadcrum");
     return ( 
-        <div className="breadcrum">
+        <div className="breadcrum bg-orange-100">
             <Link to="/">HOME</Link>
             <img src={BreadCrum_arrow} alt="arrow" />
             <Link to={`/${product.category.toLowerCase()}`}>SHOP {product.category.toUpperCase()}</Link>
