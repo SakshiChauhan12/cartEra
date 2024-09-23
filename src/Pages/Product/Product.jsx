@@ -3,6 +3,7 @@ import AllProducts from "../../Components/Assets/AllProduct";
 import BreadCrum from "../../Components/BreadCrum/BreadCrum";
 import ProductDisplay from "../../Components/ProductDisplay/ProductDisplay";
 import Description from "../../Components/Description/Descritption";
+import Related from "../../Components/Related/Related";
 const Product = () => {
     const {id} = useParams(); // this is give the array with the id as the key and value as the string of the  exact value of id;
     console.log(id,typeof id);
@@ -15,6 +16,7 @@ const Product = () => {
             <BreadCrum product={product}/>
             <ProductDisplay product={product}/>
             <Description />
+            {/* <Related category={product.category}/> */}
         </h3>
      );
 }

@@ -31,7 +31,12 @@ const ShopCategory = (props) => {
                     {/* </button> */}
                 </div>
             </div>
-            <Item product={Collections}/>
+            <div className="shop-category-item">
+                {Collections.map(item =>
+                    <Item product={item}/>
+                    
+                )}
+            </div>
         </div>
      );
 }

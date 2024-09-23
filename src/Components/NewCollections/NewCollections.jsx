@@ -10,7 +10,13 @@ const NewCollection = () => {
                 </div>
                 <hr />
             </div>
-            <Item  product={new_collection}/>
+            <div className="new-collection-item">
+                {
+                    new_collection.map(item =>{
+                       return  <Item  product={item}/>
+                    })
+                }
+            </div>
         </div>
      );
 }

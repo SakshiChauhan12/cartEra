@@ -1,5 +1,5 @@
 import react from "react";
-import { data_trending_product_women } from "../Assets/data_trending_product";
+import { data_trending_product_women } from "../Assets/data_trending_product_women";
 import Item from "../Item/Item";
 import "./Trending.css"
 const Trending = () => {
@@ -12,7 +12,13 @@ const Trending = () => {
                 </div>
                 <hr />
             </div>
-            <Item  product={data_trending_product_women}/>
+            <div className="trending-item">
+            {data_trending_product_women.map(item=>{
+                {console.log(item)}
+                return <Item  product={item}/>
+            })
+            }
+            </div>
         </div>
      );
 }
