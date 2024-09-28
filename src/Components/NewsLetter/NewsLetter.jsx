@@ -8,7 +8,7 @@ const NewsLetter = () => {
     }
     function handleSubmit(e){
         e.preventDefault();
-        console.log(input);
+        // console.log(input);
         setInput("");
     }
     return ( 

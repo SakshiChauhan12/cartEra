@@ -2,7 +2,7 @@ import "./BreadCrum.css"
 import BreadCrum_arrow from "../Assets/Bread_crum/Breadcrum_arrow.png"
 import { Link } from "react-router-dom";
 const BreadCrum = ({product}) => {
-    console.log(product, "in breadcrum");
+    // console.log(product, "in breadcrum");
     return ( 
         <div className="breadcrum bg-orange-100">
             <Link to="/">HOME</Link>

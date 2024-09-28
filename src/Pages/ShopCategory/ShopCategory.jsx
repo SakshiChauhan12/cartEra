@@ -4,10 +4,10 @@ import { ShopContext } from "../../Context/Context";
 import Item from "../../Components/Item/Item";
 const ShopCategory = (props) => {
     const {AllProduct} = useContext(ShopContext);
-    console.log(AllProduct)
-    console.log(props.category)
+    // console.log(AllProduct)
+    // console.log(props.category)
     const Collections = AllProduct.filter(product =>(product.category === props.category))
-    console.log(Collections)
+    // console.log(Collections)
     return ( 
         <div>
             <img src={props.banner} alt="" className="banner-image"/>

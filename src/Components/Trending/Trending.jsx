@@ -3,7 +3,7 @@ import { data_trending_product_women } from "../Assets/data_trending_product_wom
 import Item from "../Item/Item";
 import "./Trending.css"
 const Trending = () => {
-    console.log(data_trending_product_women)
+    // console.log(data_trending_product_women)
     return ( 
         <div className="trending">
             <div className="text-4xl text-center text-gray-500">
@@ -14,7 +14,7 @@ const Trending = () => {
             </div>
             <div className="trending-item">
             {data_trending_product_women.map(item=>{
-                {console.log(item)}
+                // {console.log(item)}
                 return <Item  product={item}/>
             })
             }

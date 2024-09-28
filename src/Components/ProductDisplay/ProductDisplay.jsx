@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./ProductDisplay.css"
 import StarIcon from "./../Assets/Star_icon/star_icon.png";
 import StarDullIcon from "./../Assets/Star_icon/star_dull_icon.png";
+import { useActionData } from "react-router-dom";
+import { ShopContext } from "../../Context/Context";
 const ProductDisplay = ({product}) => {
+    const {addToCart} = useContext(ShopContext);
     return ( 
         <div className="product-display">
             <div className="product-display-left">
@@ -50,7 +53,7 @@ const ProductDisplay = ({product}) => {
                         <div className="product-display-right-size-item">XXL</div>
                     </div>
                 </div>
-                <button className="product-display-right-add-to-cart-button">Add to Cart</button>
+                <button onClick={() =>{addToCart(product.id)}} className="product-display-right-add-to-cart-button">Add to Cart</button>
                 <div className="product-display-right-category">
                 <p className="product-display-right-category-item">
                     <span className="product-display-right-category-item">Category</span> {product.category ? product.category: "Not Available"};
