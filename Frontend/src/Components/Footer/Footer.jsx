@@ -15,7 +15,7 @@ const Footer = () => {
                         <div className="text-red-600 font-bold ">
                             Urban
                         </div>
-                        <div className="text-gray-500 font-extrabold mx-2">
+                        <div className="text-gray-500 font-extrabold ">
                             Styling
                         </div>
                     </div>

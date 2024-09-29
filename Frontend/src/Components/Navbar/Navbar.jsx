@@ -1,12 +1,23 @@
-import react from "react";
+import react, { useContext } from "react";
 import "./Navbar.css";
 import cart_icons from "../Assets/Navbar/cart_icon.png"
 import logo from "../Assets/Navbar/logo.png"
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ShopContext } from "../../Context/Context";
 
 const Navbar = () => {
     const [menu,setMenu] = useState("shop")
+    const {cartItem,AllProduct} = useContext(ShopContext);
+    const countItem = ()=>{
+        let count = 0;
+        AllProduct.map(e =>{
+            if(cartItem[e.id] > 0){
+                count+=cartItem[e.id];
+            }
+        })
+        return count;
+    }
     return ( 
         <div className="navbar bg-orange-100">
             <div className="navlogo" >
@@ -24,16 +35,16 @@ const Navbar = () => {
                 <Link to="/women">Women</Link> {menu === "women"? <hr/>: <></>}</li>
                 <li onClick={()=>setMenu("kids")}>
                 <Link to="/kid">Kids</Link> {menu === "kids"? <hr/>: <></>}</li>
-                <li onClick={()=>setMenu("contact")}>Contact{menu === "contact"? <hr/>: <></>}</li>
+                <li onClick={()=>setMenu("contact")}><Link to="/contact">Contact</Link> {menu === "contact"? <hr/>: <></>}</li>
             </ul>
             <div className = "nav-login-cart">
-                <Link to="/loginsignup">
+                <Link to="/loginsignup" onClick={() =>setMenu("")}>
                 <button className="signin-button">Sign in</button>
                 </Link>
-                <Link to="/cart">
+                <Link to="/cart" onClick={() =>setMenu("")}>
                 <img src={cart_icons} alt="" />
                 </Link>
-                <div className="nav-cart-count">0</div>
+                <div className="nav-cart-count">{countItem()}</div>
             </div>
         </div>
      );

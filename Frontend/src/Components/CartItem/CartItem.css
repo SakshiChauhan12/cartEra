@@ -5,8 +5,9 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 20px;
     background-color: #f7f7f7;
+    margin-bottom: 10px;
 }
 
 /* Style for the table headers */
@@ -46,6 +47,7 @@ hr {
     align-items: center;
     margin-bottom: 20px;
     text-align: center;
+    /* display: flex; */
 }
 
 /* Cart product image */
@@ -99,10 +101,12 @@ hr {
 .quantity-buttons{
     width: 30px;
     height: 30px;
+    text-align: center;
 }
 .quantity-buttons:hover{
     /* outline: auto; */
     border: 1px solid grey;
+    text-align: center;
 }
 
 /* Remove icon styling */
@@ -143,3 +147,81 @@ hr {
         font-size: 0.9rem;
     }
 } */
+
+
+.cart-item-down{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    width: 30%;
+    margin: 0 auto;
+}
+.cart-summary{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+
+}
+.cart-summary-item{
+    display: FLEX;
+    justify-content: space-between;
+    /* width: 200px; */
+    width: 100%;
+}
+.cart-summary-item .label{
+    font-weight: bold;
+}
+
+.cart-summary-item{
+    text-align: right;
+}
+
+.cart-item-down-promocode{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+
+}
+
+.cart-item-down-promocode input{
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.cart-item-down-promocode button{
+    padding: 10px;
+    background-color: #ff4141;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cart-item-down-promocode button:hover{
+    background-color: #218838;
+}
+
+.checkout-button{
+    margin-top: 10px;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #ff4141;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.checkout-button:hover{
+    background-color: #218838;
+}
+
+
