@@ -34,7 +34,7 @@ app.get("/", (req,res) =>{
 //Image Storage Engine
 
 const storage = multer.diskStorage({
-    destination : "./upload/image",   // destination of uploaded file
+    destination : "./upload/images",   // destination of uploaded file
     filename :  (req, file, callback) =>{
         return callback(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
     }    //name of the file 
