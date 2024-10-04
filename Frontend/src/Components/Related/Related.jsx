@@ -16,8 +16,8 @@ function getRelatedProductsForCategory(category, products){
     }
     return related_products;
 }
-const Related = ({category}) => {
-    const related_product_data = getRelatedProductsForCategory(category, AllProducts);
+const Related = ({category }) => {
+    const related_product_data = getRelatedProductsForCategory(category, AllProducts)
     return ( 
         <div className="related">
             <h1>RELATED PRODUCTS</h1>
