@@ -9,8 +9,10 @@ const Admin = () => {
         <div className="admin">
             <Sidebar/>
             <Routes>
-                <Route path="/addproduct" element={<AddProduct/>}></Route>
-                <Route path="/listproduct" element={<ListProduct />}></Route>
+                <Route path="/addproduct" element={<AddProduct/>} className="AddProduct">
+                </Route>
+                <Route path="/listproduct" element={<ListProduct />} className="ListProduct">
+                </Route>
             </Routes>
         </div>
      );

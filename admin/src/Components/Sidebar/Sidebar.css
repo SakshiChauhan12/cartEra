@@ -28,4 +28,8 @@
         height: auto;
         justify-content: center;
     }
+    .sidebar-item{
+        margin: 0;
+    }
+
 }

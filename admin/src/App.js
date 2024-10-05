@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../../adminn/src/Components/Navbar/Navbar.jsx";
-import Admin from "../../adminn/src/Pages/Admin/Admin.jsx";
+import Navbar from "../../admin/src/Components/Navbar/Navbar.jsx";
+import Admin from "../../admin/src/Pages/Admin/Admin.jsx";
 import "./App.css"
 import { BrowserRouter as Router, Routes,Route } from "react-router-dom";
 const App = () => {
