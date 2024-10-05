@@ -14,7 +14,7 @@ const getDefaultCart = () =>{
 }
 const ShopContextProvider = (props) =>{
     const [cartItem,setCartItem] = useState(getDefaultCart());
-    // console.log(cartItem);
+    console.log(cartItem);
     const addToCart = (itemID) =>{
         setCartItem((prev) =>({...prev, [itemID]: prev[itemID]+1}))// the curly brace help me to treat the prev as the object and without the parathesis js will interpret the curly brace as the function.
         
