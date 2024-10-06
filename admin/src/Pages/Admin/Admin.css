@@ -1,9 +1,11 @@
 .admin{
     display: flex;
 }
-.AddProduct{
-    width: 100%;
-    background-color: pink;
+.right-sidebar{
+    width: 95vw;
+    /* background-color: pink; */
+    box-sizing: border-box;
+    margin: 0px auto;
 }
 .ListProduct{
     width: 100%;

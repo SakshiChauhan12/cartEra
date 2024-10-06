@@ -1,11 +1,13 @@
 .add-product{
     box-sizing: border-box;
-    width: 100%;
-    max-width: 800px;
+    width: 96%;
     padding: 30px 50px;
-    margin: 20px 30px;
+    margin: 20px auto;
     border-radius: 6px;
     background-color: white;
+}
+.add-product-form{
+    width: 70%;
 }
 .addproduct-item-field{
     width: 100%;
@@ -56,6 +58,9 @@
     color: white;
     font-size: 16px;
     font-weight: 500;
+}
+.addproduct-btn:hover{
+    background-color: #314df1;
 }
 @medie (max-width: 800px){
     .add-product{

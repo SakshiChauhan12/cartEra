@@ -45,7 +45,7 @@ const upload = multer({storage: storage}); // here we use the multer to create t
 //Creating upload endpoint for images
 app.use("/images", express.static("upload/images")) // express.static to look the file in the upload/images
 
-app.post("/upload", upload.single("product"), (req,res)=>{
+app.post("/upload", upload.single("productImage"), (req,res)=>{
     try{
         res.json({
             success: 1,
