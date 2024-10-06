@@ -17,39 +17,55 @@ const AddProduct = () => {
     const productHandler = (e) =>{
         setProductDetails({...productDetails, [e.target.name]: e.target.value})
     }
-    const addProduct = async () =>{
-        console.log(productDetails);
-        let responseData={};
+    const addProduct = () =>{
         let product = productDetails;
-
-        let formData = new FormData(); // it is the object help in manage the form to uplaod the image
-        formData.append("productImage",image); // this is the postman productImage amd its value image... that we are share to backend.
-        console.log(formData);
-
-        await fetch("http://localhost:4000/upload",{
+        let responseData={} ;
+        let formData =  new FormData(); // it is the object help in manage the form to uplaod the image
+        formData.append("productImage", image); // this is the postman productImage amd its value image... that we are share to backend.
+        fetch("http://localhost:4000/upload", {
             method: "POST",
-            headers: {
-                Accept: "application/json" // accept means we are expecting to get json data from the server
-            },
+            headers:{
+                "Accept": "application/json",  // accept means we are expecting to get json data from the server
+            }, 
             body: formData
-        }). then(res =>{
-            if(res.ok)
-                return  res.json();
-            else{
-                throw new Error("Image is not uploaded")
+        }).then(res =>{
+            if(res.ok){
+                return res.json();
+            }else{
+                throw new Error("File to upload the image");
             }
         }).then(data =>{
-            console.log(data);
-
             responseData = data;
-            console.log(responseData.success);
+            if(responseData.success){
+                console.log(responseData);
+                return fetch("http://localhost:4000/addproduct", {
+                    method: "POST",
+                    headers:{
+                        "Accept": "application/json",
+                        "Content-Type":  "application/json"
+                    },
+                    body: JSON.stringify(product)
+                })
+            }
+            else {
+                throw new Error("Failed to upload image");
+            }
+        }).then(res =>{
+            if(res.ok){
+                return res.json();
+            }else{
+                throw new Error("Product is not added");
+            }
+        }).then(data =>{
+            if(data.success){
+                alert("Product added successfully");
+            }
+            else{
+                alert("Product is not added");
+            }
         }).catch(error =>{
-            console.log("There is the error is fetching", error);
+            console.log("There is the error", error);
         })
-        if(responseData.success==1){
-            product.image = responseData.image_url;
-            console.log(product);
-        }
     }
     return (
         <div className="add-product">
