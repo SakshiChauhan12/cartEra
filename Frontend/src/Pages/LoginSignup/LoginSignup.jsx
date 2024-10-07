@@ -10,10 +10,38 @@ const LoginSignup = () => {
         email: "",
         password: "",
     })
+    const [isChecked, setIsChecked] = useState(true);
     const navigate = useNavigate();
     const login = async (e)=>{
         e.preventDefault();
         console.log("login", formData);
+        let responseData;
+        await fetch("http://localhost:4000/login", {
+            method: "POST",
+            headers: {
+                "Accept": "application/form-data",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData)
+        }).then(res => res.json()).then(data => {
+            responseData = data;
+            if(responseData.success){
+                localStorage.setItem("auth-token", responseData.token); // auth-toekn is name of the token.
+                navigate("/");
+                console.log(responseData);
+            }
+            else{
+                alert(responseData.error);
+                setFromData({
+                    name: "",
+                    email: "",
+                    password: "",
+                })
+                setIsChecked(false);
+                throw new Error("Failed to signup");
+            }
+        }
+        ).catch(err => console.log(err))
     }
 
     const signup = async (e)=>{
@@ -41,6 +69,7 @@ const LoginSignup = () => {
                     email: "",
                     password: "",
                 })
+                setIsChecked(false);
                 throw new Error("Failed to signup");
             }
         }
@@ -49,6 +78,9 @@ const LoginSignup = () => {
 
     const changeHandler = (e) =>{
         setFromData({...formData, [e.target.name]: e.target.value})
+    }
+    const toggleCheckbox = () =>{
+        setIsChecked(!isChecked);
     }
     return (
         <form className="form">
@@ -68,7 +100,7 @@ const LoginSignup = () => {
                         onChange={changeHandler}/> <br />
                 </div>
                 <div className="flex pl-14 p-2">
-                    <input type="checkbox" className="p-8" />
+                    <input type="checkbox" className="p-8" checked={isChecked} onChange={toggleCheckbox} />
                     <div className="flex font-semibold text-gray-500 ">
                         <div className="accept ml-2">
                             I accept the
