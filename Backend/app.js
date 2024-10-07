@@ -7,6 +7,7 @@ const multer = require("multer");
 const cors = require("cors");
 const morgan = require("morgan");
 const path = require("path");
+const bcrypt = require("bcrypt");
 // require("./conn/conn.js");
 
 //Database connection with mongoDB
@@ -147,6 +148,152 @@ app.get("/allproduct", async (req,res) =>{
     console.log("All product fetch");
     res.send(products);
 })
+//Schema creteing for user model.
+
+const userSchema = new Schema({
+    name :{
+        type: String,
+        required: true
+    },
+
+    email: {
+        type: String,
+        unique: true, 
+        required: true
+    },
+    password:{
+        type: String,
+        required: true
+    },
+    cartData: {
+        type: Object,
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+    }
+
+})
+const userObj = mongoose.model("userModel", userSchema, "userCollection");
+
+
+// hashed the password before saving in mongoDB.
+function hashedPassword(passwordForDB){
+    const salt = bcrypt.genSaltSync(10);
+    return bcrypt.hashSync(passwordForDB,salt);
+}
+
+function comparePassword(loginPassword,passwordinDB){
+    const isMatch = bcrypt.compareSync(loginPassword,passwordinDB);
+    return isMatch;
+}
+//Creating Endpoint for registering the user
+app.post("/register", async (req,res) =>{
+    // let username = req.body.username;
+    // let password = req.body.password;
+    // password = hashedPassword(password);
+    // let email = req.body.email;
+    // let obj = {email,username,password};
+    // console.log(obj);
+    // userObj.create(obj)
+    // .then(user =>{
+    //     console.log("User is created succesfully");
+    //     res.status(200).json({message:"Created succesfully"});
+    // }).catch(error =>{
+    //     console.log(error);
+    //     console.log("User is already existed");
+    //     res.json({message: "User is already existed"});
+    // })
+    console.log("hello");
+    try{
+        let check = await userObj.findOne({email: req.body.email});
+        if(check){
+            return res.status(200).json({success: false, error : "User already exists"});
+        }
+        let cart={};
+        for (let i = 0; i < 300; i++) {
+            cart[i] =0;
+            
+        }
+        let password = req.body.password;
+        password = hashedPassword(password);
+        const user =  new userObj({
+            name: req.body.name,
+            email: req.body.email,
+            password: password,
+            cartData: cart,
+        });
+        await user.save();
+    
+        const data = {
+            user: {
+                id: user.id,
+            }
+        }
+        const token = jwt.sign(data, "urban_styling_token");
+        res.json({success: true, token: token})
+
+    }
+    catch(err){
+        console.log("There is the error", err);
+    }
+})
+app.post("/login", async (req, res) => {
+    let user = await userObj.findOne({ email: req.body.email });
+    if (user) {
+      if (comparePassword(req.body.password,user.password)) {
+        const data = {
+          user: {
+            id: user.id,
+          },
+        };
+        const token = jwt.sign(data, "secret_ecom");
+        res.json({
+          success: true,
+          token,
+        });
+      } else {
+        return res.status(400).json({
+          success: false,
+          error: "Invalid password",
+        });
+      }
+    } else {
+      return res.status(400).json({
+        success: false,
+        error: "Invalid email",
+      });
+    }
+  });
+
+
+  //creating api for newCollection data
+  app.get("/newcollection", async (req, res) => {
+    let products = await productObj.find({});
+    let newcollection = products.slice(1).slice(-8);
+    console.log("New Collection fetched");
+    res.send(newcollection);
+  });
+
+  //creating api for trending data
+  app.get("/trendingwomen", async (req, res) => {
+    let products = await productObj.find({ category: "women" });
+    let trending_in_women = products.slice(0, 4);
+    console.log("Trending in women fetched");
+    res.send(trending_in_women);
+  });
+  app.get("/trendingmen", async (req, res) => {
+    let products = await productObj.find({ category: "men" });
+    let trending_in_men = products.slice(1).slice(-4);
+    console.log("Trending in men fetched");
+    res.send(trending_in_men);
+  });
+  app.get("/trendingkid", async (req, res) => {
+    let products = await productObj.find({ category: "kid" });
+    let trending_in_kid = products.slice(1).slice(-4);
+    console.log("Trending in kid fetched");
+    res.send(trending_in_kid);
+  });
 app.listen(port, (error) =>{
     if(!error){
         console.log("Server runnning at port", port);

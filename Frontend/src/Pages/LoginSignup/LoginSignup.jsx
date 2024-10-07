@@ -1,22 +1,74 @@
 import react from "react"
 import "./LoginSignup.css"
+import { useState } from "react";
+import {useNavigate} from "react-router-dom"
+
 const LoginSignup = () => {
+    const [state, setState] = useState("Login");
+    const [formData,setFromData] = useState({
+        name: "",
+        email: "",
+        password: "",
+    })
+    const navigate = useNavigate();
+    const login = async (e)=>{
+        e.preventDefault();
+        console.log("login", formData);
+    }
+
+    const signup = async (e)=>{
+        e.preventDefault();
+        console.log("signup", formData);
+        let responseData;
+        await fetch("http://localhost:4000/register", {
+            method: "POST",
+            headers: {
+                "Accept": "application/form-data",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData)
+        }).then(res => res.json()).then(data => {
+            responseData = data;
+            if(responseData.success){
+                localStorage.setItem("auth-token", responseData.token); // auth-toekn is name of the token.
+                navigate("/");
+                console.log(responseData);
+            }
+            else{
+                alert(responseData.error);
+                setFromData({
+                    name: "",
+                    email: "",
+                    password: "",
+                })
+                throw new Error("Failed to signup");
+            }
+        }
+        ).catch(err => console.log(err));
+    }
+
+    const changeHandler = (e) =>{
+        setFromData({...formData, [e.target.name]: e.target.value})
+    }
     return (
         <form className="form">
             <div className="form-body space-y-3">
                 <div className="text-center font-semibold text-4xl my-14 h-8">
-                    Sign Up
+                    {state==="Login"? "Login": "Signup"}
                 </div>
                 <div className="input-boxes my-3 mx-12 flex-col space-y-6">
-                <input type="text" 
-                    placeholder="Username" /> <br />   
-                <input type="email"
-                    placeholder="Email" /> <br />
-                <input type="Password"
-                    placeholder="Password" /> <br />
+                    {state === "Login" ? <> </> : <><input name="name" value={formData.username} type="text"
+                        placeholder="Username" 
+                        onChange={changeHandler}/> <br />  </>}
+                    <input type="email" name="email" value={formData.email}
+                        placeholder="Email" 
+                        onChange={changeHandler}/> <br />
+                    <input type="Password" name="password" value={formData.password}
+                        placeholder="Password" 
+                        onChange={changeHandler}/> <br />
                 </div>
                 <div className="flex pl-14 p-2">
-                    <input type="checkbox" className="p-8"/>
+                    <input type="checkbox" className="p-8" />
                     <div className="flex font-semibold text-gray-500 ">
                         <div className="accept ml-2">
                             I accept the
@@ -26,15 +78,31 @@ const LoginSignup = () => {
                         </div>
                     </div>
                 </div>
-                <button className="signup-button ">Sign up</button>
-                <div className="flex font-semibold text-gray-500 pl-9 mb-3 items-center justify-center py-4">
+
+                <button className="signup-button "
+                onClick={state==="Login"? login: signup
+                }>
+                    {state ==="Login"? "Login": "Signup"}
+                </button>
+
+                {state !== "Login" ?
+                 <div className="flex font-semibold text-gray-500 pl-9 mb-3 items-center justify-center py-4">
                     <div>
                         Already have an account?
                     </div>
-                    <div className="terms-conditions text-orange-600 ml-1">
+                    <div className="terms-conditions text-orange-600 ml-1" onClick={() =>setState("Login")}>
                         Login
                     </div>
-                </div>
+                </div> :
+                    <div className="flex font-semibold text-gray-500 pl-9 mb-3 items-center justify-center py-4">
+                        <div>
+                            Create an account?
+                        </div>
+                        <div className="terms-conditions text-orange-600 ml-1" onClick={() =>setState("Signup")}>
+                            Signup
+                        </div>
+                    </div>}
+
             </div>
         </form>
     );

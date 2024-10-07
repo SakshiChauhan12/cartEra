@@ -2,8 +2,10 @@ import React from "react";
 import "./AddProduct.css";
 import upload_icon from "./../../assets/upload_area.svg"
 import { useState } from "react";
+import {useNavigate} from "react-router-dom"
 const AddProduct = () => {
     const [image, setImage] = useState(false);
+    const navigate  = useNavigate();
     const [productDetails, setProductDetails] = useState({
         name: "",
         image: "",
@@ -36,6 +38,7 @@ const AddProduct = () => {
             }
         }).then(data =>{
             responseData = data;
+            product.image = responseData.image_url;
             if(responseData.success){
                 console.log(responseData);
                 return fetch("http://localhost:4000/addproduct", {
@@ -58,13 +61,21 @@ const AddProduct = () => {
             }
         }).then(data =>{
             if(data.success){
-                alert("Product added successfully");
+                navigate("/listproduct");
+                // alert("Product added successfully");
             }
             else{
                 alert("Product is not added");
             }
         }).catch(error =>{
             console.log("There is the error", error);
+        })
+        setProductDetails({
+            name: "",
+            image: "",
+            category: "women",
+            new_cost:"",
+            old_cost:"",
         })
     }
     return (

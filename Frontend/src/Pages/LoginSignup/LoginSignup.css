@@ -30,3 +30,7 @@
     width: 85%;
     font-size: 22px;
 }
+.terms-conditions:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
