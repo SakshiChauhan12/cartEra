@@ -1,9 +1,16 @@
-import react from "react";
+import react, { useEffect } from "react";
 import { data_trending_product_women } from "../Assets/data_trending_product_women";
 import Item from "../Item/Item";
 import "./Trending.css"
+import { useState } from "react";
 const Trending = () => {
     // console.log(data_trending_product_women)
+    const [trendingWomen, setTrendingWomen] = useState([]);
+    useEffect(() => {
+        fetch("http://localhost:4000/trendingwomen").then(res => res.json()).then(data => {
+            setTrendingWomen(data);
+        })
+    },[]);
     return ( 
         <div className="trending">
             <div className="text-4xl text-center text-gray-500">
@@ -13,7 +20,7 @@ const Trending = () => {
                 <hr />
             </div>
             <div className="trending-item">
-            {data_trending_product_women.map(item=>{
+            {trendingWomen.map(item=>{
                 // {console.log(item)}
                 return <Item  product={item}/>
             })

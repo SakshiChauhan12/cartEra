@@ -61,7 +61,7 @@ const AddProduct = () => {
             }
         }).then(data =>{
             if(data.success){
-                navigate("/listproduct");
+                // navigate("/listproduct");
                 // alert("Product added successfully");
             }
             else{
@@ -71,11 +71,11 @@ const AddProduct = () => {
             console.log("There is the error", error);
         })
         setProductDetails({
-            name: "",
-            image: "",
-            category: "women",
-            new_cost:"",
-            old_cost:"",
+            // name: "",
+            // image: "",
+            // category: "women",
+            // new_cost:"",
+            // old_cost:"",
         })
     }
     return (

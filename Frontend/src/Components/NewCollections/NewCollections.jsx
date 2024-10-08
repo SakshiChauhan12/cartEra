@@ -1,7 +1,15 @@
+import { useEffect } from "react";
 import new_collection from "../Assets/NewCollections"
 import Item from "../Item/Item";
 import "./NewCollection.css"
+import { useState } from "react";
 const NewCollection = () => {
+    const [newCollection, setNewCollection] = useState([]);
+    useEffect(() => {   
+        fetch("http://localhost:4000/newcollection").then(res => res.json()).then(data => {
+            setNewCollection(data);
+        })
+    },[]);
     return ( 
         <div className="new-collection">
             <div className="text-4xl text-center text-gray-500">
@@ -12,7 +20,7 @@ const NewCollection = () => {
             </div>
             <div className="new-collection-item">
                 {
-                    new_collection.map(item =>{
+                    newCollection.map(item =>{
                        return  <Item  product={item}/>
                     })
                 }

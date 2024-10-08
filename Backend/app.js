@@ -87,7 +87,8 @@ const productSchema = new Schema({
     },
     description:{
         type:String,
-        required:false
+        required:false,
+        defualt: "This is the description of the product"
     },
     date:{
         type: Date,
@@ -145,7 +146,7 @@ app.post("/removeproduct", async(req,res) =>{
 // creating api for getting all product
 app.get("/allproduct", async (req,res) =>{
     const products = await productObj.find({});
-    console.log("All product fetch");
+    console.log("All product fetch",products);
     res.send(products);
 })
 //Schema creteing for user model.
@@ -247,7 +248,7 @@ app.post("/login", async (req, res) => {
             id: user.id,
           },
         };
-        const token = jwt.sign(data, "secret_ecom");
+        const token = jwt.sign(data, "urban_styling_token");
         res.json({
           success: true,
           token,
@@ -270,7 +271,7 @@ app.post("/login", async (req, res) => {
   //creating api for newCollection data
   app.get("/newcollection", async (req, res) => {
     let products = await productObj.find({});
-    let newcollection = products.slice(1).slice(-8);
+    let newcollection = products.slice(-8);
     console.log("New Collection fetched");
     res.send(newcollection);
   });
@@ -284,7 +285,7 @@ app.post("/login", async (req, res) => {
   });
   app.get("/trendingmen", async (req, res) => {
     let products = await productObj.find({ category: "men" });
-    let trending_in_men = products.slice(1).slice(-4);
+    let trending_in_men = products.slice(-4);
     console.log("Trending in men fetched");
     res.send(trending_in_men);
   });
@@ -293,6 +294,30 @@ app.post("/login", async (req, res) => {
     let trending_in_kid = products.slice(1).slice(-4);
     console.log("Trending in kid fetched");
     res.send(trending_in_kid);
+  });
+  // creating middleware to fetch user
+  const fetchUser = async(req, res, next) =>{
+    const token =req.header("auth-token");
+    console.log(token);
+    if(!token){
+        res.status(401).send({error: "please authicate by valid token"})
+    }else{
+        try {
+            console.log("Inside try block");
+            const data = jwt.verify(token, "urban_styling_token");
+            console.log(data);
+            req.user = data.user;
+            next();
+        } catch (error) {
+            console.log(error);
+            res.status(401).send({error: "please authicate by valid token"});
+        }
+    }
+  }
+  //creating endpoint for adding products in cartdata
+  app.post("/addtocart", fetchUser,async (req, res) => {
+    console.log(req.body,req.user);
+
   });
 app.listen(port, (error) =>{
     if(!error){

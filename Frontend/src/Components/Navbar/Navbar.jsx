@@ -5,9 +5,10 @@ import logo from "../Assets/Navbar/logo.png"
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../../Context/Context";
-
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
     const [menu,setMenu] = useState("shop")
+    const navigate = useNavigate();
     const {cartItem,AllProduct} = useContext(ShopContext);
     const countItem = ()=>{
         let count = 0;
@@ -17,6 +18,10 @@ const Navbar = () => {
             }
         })
         return count;
+    }
+    const Logout = () =>{
+        localStorage.removeItem("auth-token");
+        navigate("/loginsignup");
     }
     return ( 
         <div className="navbar bg-orange-100">
@@ -38,9 +43,11 @@ const Navbar = () => {
                 <li onClick={()=>setMenu("contact")}><Link to="/contact">Contact</Link> {menu === "contact"? <hr/>: <></>}</li>
             </ul>
             <div className = "nav-login-cart">
+                {localStorage.getItem("auth-token")?<button onClick={Logout} className="signin-button">Logout</button>:
                 <Link to="/loginsignup" onClick={() =>setMenu("")}>
                 <button className="signin-button">Sign in</button>
-                </Link>
+                </Link>}
+                
                 <Link to="/cart" onClick={() =>setMenu("")}>
                 <img src={cart_icons} alt="" />
                 </Link>

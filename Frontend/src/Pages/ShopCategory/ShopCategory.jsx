@@ -7,7 +7,7 @@ const ShopCategory = (props) => {
     // console.log(AllProduct)
     // console.log(props.category)
     const Collections = AllProduct.filter(product =>(product.category === props.category))
-    // console.log(Collections)
+    console.log(Collections)
     return ( 
         <div>
             <img src={props.banner} alt="" className="banner-image"/>
