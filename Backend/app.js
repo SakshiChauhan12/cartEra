@@ -145,9 +145,14 @@ app.post("/removeproduct", async(req,res) =>{
 })
 // creating api for getting all product
 app.get("/allproduct", async (req,res) =>{
-    const products = await productObj.find({});
-    console.log("All product fetch",products);
-    res.send(products);
+    try{
+        const products = await productObj.find({});
+        console.log("All product fetch",products);
+        res.send(products);
+
+    }catch(error){
+        console.log(error);
+    }
 })
 //Schema creteing for user model.
 
@@ -212,7 +217,7 @@ app.post("/register", async (req,res) =>{
             return res.status(200).json({success: false, error : "User already exists"});
         }
         let cart={};
-        for (let i = 0; i < 300; i++) {
+        for (let i = 0; i < 36; i++) {
             cart[i] =0;
             
         }
@@ -316,9 +321,68 @@ app.post("/login", async (req, res) => {
   }
   //creating endpoint for adding products in cartdata
   app.post("/addtocart", fetchUser,async (req, res) => {
-    console.log(req.body,req.user);
+    console.log(req.body.itemID);
+    let userData = await userObj.findOne({_id: req.user.id});
+    console.log(userData);
+    userData.cartData[req.body.itemID] +=1;
+    await userObj.findOneAndUpdate({_id: req.user.id},{cartData:userData.cartData},{new:true}).then(res =>{
+        if(res){
+            console.log("Added");
+
+        }
+        else{
+            throw new Error("Cartdata is not updated");
+        }
+    }).catch(error =>{
+        console.log(error);
+    });
 
   });
+ 
+  //creating endpoint for remove product from cartData.
+  
+  app.post("/removefromcart", fetchUser, async(req,res) =>{
+    console.log(req.body.itemID);
+    let userData =await  userObj.findOne({_id: req.user.id});
+    console.log(userData);
+    userData.cartData[req.body.itemID] = 0;
+    await userObj.findOneAndUpdate({_id: req.user.id}, {cartData: userData.cartData},{bew:true}).then(res =>{
+        if(res){
+            console.log("Remove");
+        }
+        else{
+            throw new Error("Cartdata is not updated");
+        }
+    }).catch(error =>{
+        console.log(error);
+    });
+0000
+  })
+
+  // creating endpoint for remove one quantity from the cart.
+  app.post("/removeonefromcart", fetchUser, async(req,res) =>{
+    console.log(req.body,req.user);
+    let userData = await userObj.findOne({_id: req.user.id});
+    userData.cartData[req.body.itemID] -= 1;
+    await userObj.findOneAndUpdate({_id: req.user.id}, {cartData: userData.cartData}<{new:true}).then(res =>{
+        if(res){
+            console.log("Remove");
+        }
+        else{
+            throw new Error("Cartdata is not updated");
+        }
+    }).catch(error =>{
+        console.log(error);
+    });
+
+  })
+
+  //creating 
+  app.post("/getcart", fetchUser, async (req,res) =>{
+    console.log("GetCart");
+    let userData = await findOne({_id: req.user.id});
+    res.json(userData.cartData);
+  })
 app.listen(port, (error) =>{
     if(!error){
         console.log("Server runnning at port", port);

@@ -32,15 +32,15 @@ const Navbar = () => {
                 </div>
             </div>
             <ul className = "navmenu">
-                <li onClick={()=>setMenu("shop")}>
-                    <Link to="/">All shop</Link> {menu === "shop"? <hr/>: <></>}</li>
-                <li onClick={()=>setMenu("men")}>
-                <Link to="/men">Men</Link>  {menu === "men"? <hr/>: <></>}</li>
-                <li onClick={()=>setMenu("women")}>
-                <Link to="/women">Women</Link> {menu === "women"? <hr/>: <></>}</li>
-                <li onClick={()=>setMenu("kids")}>
-                <Link to="/kid">Kids</Link> {menu === "kids"? <hr/>: <></>}</li>
-                <li onClick={()=>setMenu("contact")}><Link to="/contact">Contact</Link> {menu === "contact"? <hr/>: <></>}</li>
+                {localStorage.getItem("auth-token")? <li onClick={()=>setMenu("shop")}>
+                <Link to="/">All shop</Link> {menu === "shop"? <hr/>: <></>}</li>: <></>}
+                {localStorage.getItem("auth-token")? <li onClick={()=>setMenu("men")}>
+                <Link to="/men">Men</Link>  {menu === "men"? <hr/>: <></>}</li>: <></>}
+                {localStorage.getItem("auth-token")? <li onClick={()=>setMenu("women")}>
+                <Link to="/women">Women</Link> {menu === "women"? <hr/>: <></>}</li>: <></>}
+                {localStorage.getItem("auth-token")? <li onClick={()=>setMenu("kids")}>
+                <Link to="/kid">Kids</Link> {menu === "kids"? <hr/>: <></>}</li>: <></>}
+                {localStorage.getItem("auth-token")?<li onClick={()=>setMenu("contact")}><Link to="/contact">Contact</Link> {menu === "contact"? <hr/>: <></>}</li>: <></>}   
             </ul>
             <div className = "nav-login-cart">
                 {localStorage.getItem("auth-token")?<button onClick={Logout} className="signin-button">Logout</button>:
