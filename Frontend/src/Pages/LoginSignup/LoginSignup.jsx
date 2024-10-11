@@ -29,14 +29,15 @@ const LoginSignup = () => {
             responseData = data;
             if(responseData.success){
                 localStorage.setItem("auth-token", responseData.token); // auth-toekn is name of the token.
-                navigate("/");
+                // navigate("/");
+                window.location.replace("/");
                 setIsLoggedIn(true);
                 console.log(responseData);
             }
             else{
                 alert(responseData.error);
                 setFromData({
-                    username: "",
+                    name: "",
                     email: "",
                     password: "",
                 })
@@ -62,14 +63,15 @@ const LoginSignup = () => {
             responseData = data;
             if(responseData.success){
                 localStorage.setItem("auth-token", responseData.token); // auth-toekn is name of the token.
-                navigate("/");
+                // navigate("/");
+                window.location.replace("/");
                 setIsLoggedIn(true);
                 console.log(responseData);
             }
             else{
                 alert(responseData.error);
                 setFromData({
-                    username: "",
+                    name: "",
                     email: "",
                     password: "",
                 })
@@ -93,15 +95,26 @@ const LoginSignup = () => {
                     {state==="Login"? "Login": "Signup"}
                 </div>
                 <div className="input-boxes my-3 mx-12 flex-col space-y-6">
-                    {state === "Login" ? <> </> : <><input name="name" value={formData.username} type="text"
-                        placeholder="Username" 
-                        onChange={changeHandler}/> <br />  </>}
-                    <input type="email" name="email" value={formData.email}
-                        placeholder="Email" 
-                        onChange={changeHandler}/> <br />
-                    <input type="Password" name="password" value={formData.password}
-                        placeholder="Password" 
-                        onChange={changeHandler}/> <br />
+                    {state === "Login" ? <> </> : <>
+                    <input 
+                    name="name"
+                    value={formData.name}
+                    type="text"
+                    placeholder="Username" 
+                    onChange={changeHandler}/> <br />  </>}
+
+                    <input 
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    placeholder="Email" 
+                    onChange={changeHandler}/> <br />
+                    <input 
+                    type="Password" 
+                    name="password" 
+                    value={formData.password}
+                    placeholder="Password" 
+                    onChange={changeHandler}/> <br />
                 </div>
                 <div className="flex pl-14 p-2">
                     <input type="checkbox" className="p-8" checked={isChecked} onChange={toggleCheckbox} />

@@ -268,7 +268,7 @@ app.post("/login", async (req, res) => {
         } else {
           return res.status(400).json({
             success: false,
-            error: "Invalid email",
+            error: "Email not exist. Please signup!!",
           });
         }
     }catch{
@@ -394,10 +394,11 @@ app.post("/contact", async (req,res) =>{
   })
 
   //creating 
-  app.post("/getcart", fetchUser, async (req,res) =>{
+  app.get("/getcart", fetchUser, async (req,res) =>{
     try{
         console.log("GetCart");
         let userData = await userObj.findOne({_id: req.user.id});
+        console.log(req.user.id);
         res.json(userData.cartData);
 
     }

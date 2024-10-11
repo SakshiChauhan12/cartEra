@@ -26,7 +26,8 @@ const Navbar = () => {
     }
     const Logout = () =>{
         localStorage.removeItem("auth-token");
-        navigate("/loginsignup");
+        // navigate("/loginsignup");
+        window.location.replace("/loginsignup");
     }
     return ( 
         <div className="navbar bg-orange-100">

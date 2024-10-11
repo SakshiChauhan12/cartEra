@@ -27,16 +27,17 @@ const ShopContextProvider = (props) =>{
         if(localStorage.getItem("auth-token")){
             console.log("Inside the useEffect using localstorage")
             fetch("http://localhost:4000/getcart",{
-                method:"POST",
+                method:"GET",
                 headers:{
                     "Accept":"application/json",
                     "auth-token":localStorage.getItem("auth-token"),
                     "Content-Type": "application/json"
-                },
-                body: "",
-            }).then(res => res.json()).then(data =>setCartItem(data));
+                }
+            }).then(res => res.json()).then(data =>setCartItem(data)).catch(error =>{
+                console.log("Error fetching cart", error);
+            });
         }
-    },[isLoggedIn])
+    },[])
     console.log(cartItem);
     const addToCart = (itemID) =>{
         setCartItem((prev) =>({...prev, [itemID]: prev[itemID]+1}))// the curly brace help me to treat the prev as the object and without the parathesis js will interpret the curly brace as the function.
