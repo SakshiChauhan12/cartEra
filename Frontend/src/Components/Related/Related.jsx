@@ -2,9 +2,11 @@ import React from "react";
 import "./Related.css"
 import Item from "../Item/Item";
 import { data_trending_product_women } from "../Assets/data_trending_product_women";
-import AllProducts from "../Assets/AllProduct";
+// import AllProducts from "../Assets/AllProduct";
+import { ShopContext } from "../../Context/Context";
+import { useContext } from "react";
 function getRelatedProductsForCategory(category, products){
-    const category_products = AllProducts.filter(product => product.category === category);
+    const category_products = products.filter(product => product.category === category);
     const related_products = [];
     const related_product_ids = [];
     while (related_products.length < 4 && category_products.length > 0 ){
@@ -17,7 +19,8 @@ function getRelatedProductsForCategory(category, products){
     return related_products;
 }
 const Related = ({category }) => {
-    const related_product_data = getRelatedProductsForCategory(category, AllProducts)
+    const {AllProduct} = useContext(ShopContext)
+    const related_product_data = getRelatedProductsForCategory(category, AllProduct)
     return ( 
         <div className="related">
             <h1>RELATED PRODUCTS</h1>
