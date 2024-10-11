@@ -14,24 +14,29 @@ const getDefaultCart = () =>{
 const ShopContextProvider = (props) =>{
     const [cartItem,setCartItem] = useState(getDefaultCart());
     const [AllProduct, setAllProduct] = useState([]);   
-
+    const [isLoggedIn,setIsLoggedIn] = useState(!localStorage.getItem("auth-token"))
 
     useEffect(() => {
+        console.log("inside the useEffect");
         fetch("http://localhost:4000/allproduct").then(res => res.json()).then(data => {
             setAllProduct(data);
+        }).catch(error =>{
+            console.log(error);
         })
+        console.log(localStorage.getItem("auth-token"))
         if(localStorage.getItem("auth-token")){
+            console.log("Inside the useEffect using localstorage")
             fetch("http://localhost:4000/getcart",{
-                methor:"POST",
+                method:"POST",
                 headers:{
                     "Accept":"application/json",
-                    "auth-token":localStorage.getItem("auth-item"),
-                    "Content-Type": "appllication/json"
+                    "auth-token":localStorage.getItem("auth-token"),
+                    "Content-Type": "application/json"
                 },
-                // body: "",
+                body: "",
             }).then(res => res.json()).then(data =>setCartItem(data));
         }
-    },[])
+    },[isLoggedIn])
     console.log(cartItem);
     const addToCart = (itemID) =>{
         setCartItem((prev) =>({...prev, [itemID]: prev[itemID]+1}))// the curly brace help me to treat the prev as the object and without the parathesis js will interpret the curly brace as the function.
@@ -89,7 +94,7 @@ const ShopContextProvider = (props) =>{
                 }).then(res =>res.json()).then(data =>console.log(data));
             }
         }
-    const contextValue = {AllProduct,cartItem, addToCart,removeFromCart, removeOneFromCart};
+    const contextValue = {AllProduct,cartItem, addToCart,removeFromCart, removeOneFromCart, setIsLoggedIn};
     console.log("This is coming from context.js & it is cartItem",cartItem);
     return (
         <ShopContext.Provider value={contextValue}>

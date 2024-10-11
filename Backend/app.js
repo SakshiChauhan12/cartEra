@@ -148,7 +148,7 @@ app.get("/allproduct", async (req,res) =>{
     try{
         const products = await productObj.find({});
         console.log("All product fetch",products);
-        res.send(products);
+        res.status(200).json(products);
 
     }catch(error){
         console.log(error);
@@ -245,34 +245,51 @@ app.post("/register", async (req,res) =>{
     }
 })
 app.post("/login", async (req, res) => {
-    let user = await userObj.findOne({ email: req.body.email });
-    if (user) {
-      if (comparePassword(req.body.password,user.password)) {
-        const data = {
-          user: {
-            id: user.id,
-          },
-        };
-        const token = jwt.sign(data, "urban_styling_token");
-        res.json({
-          success: true,
-          token,
-        });
-      } else {
-        return res.status(400).json({
-          success: false,
-          error: "Invalid password",
-        });
-      }
-    } else {
-      return res.status(400).json({
-        success: false,
-        error: "Invalid email",
-      });
+    try{
+        let user = await userObj.findOne({ email: req.body.email });
+        if (user) {
+          if (comparePassword(req.body.password,user.password)) {
+            const data = {
+              user: {
+                id: user.id,
+              },
+            };
+            const token = jwt.sign(data, "urban_styling_token");
+            res.json({
+              success: true,
+              token,
+            });
+          } else {
+            return res.status(400).json({
+              success: false,
+              error: "Invalid password",
+            });
+          }
+        } else {
+          return res.status(400).json({
+            success: false,
+            error: "Invalid email",
+          });
+        }
+    }catch{
+        console.log(error);
     }
   });
 
-
+//creating endpoint for the contact page
+app.post("/contact", async (req,res) =>{
+    try{
+        res.json({
+            success: true,
+            message: "Contact page added correctly"
+          });
+    }catch(error){
+        res.json({
+            success: false,
+            error: "There is the error"
+          });
+    }
+})
   //creating api for newCollection data
   app.get("/newcollection", async (req, res) => {
     let products = await productObj.find({});
@@ -315,7 +332,7 @@ app.post("/login", async (req, res) => {
             next();
         } catch (error) {
             console.log(error);
-            res.status(401).send({error: "please authicate by valid token"});
+            res.status(401).send({error: "please check the token"});
         }
     }
   }
@@ -355,8 +372,7 @@ app.post("/login", async (req, res) => {
         }
     }).catch(error =>{
         console.log(error);
-    });
-0000
+    })
   })
 
   // creating endpoint for remove one quantity from the cart.
@@ -379,9 +395,15 @@ app.post("/login", async (req, res) => {
 
   //creating 
   app.post("/getcart", fetchUser, async (req,res) =>{
-    console.log("GetCart");
-    let userData = await findOne({_id: req.user.id});
-    res.json(userData.cartData);
+    try{
+        console.log("GetCart");
+        let userData = await userObj.findOne({_id: req.user.id});
+        res.json(userData.cartData);
+
+    }
+    catch(error){
+        console.log(error);
+    }
   })
 app.listen(port, (error) =>{
     if(!error){

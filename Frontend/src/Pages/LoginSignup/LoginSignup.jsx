@@ -2,7 +2,8 @@ import react from "react"
 import "./LoginSignup.css"
 import { useState } from "react";
 import {useNavigate} from "react-router-dom"
-
+import { useContext } from "react";
+import { ShopContext } from "../../Context/Context";
 const LoginSignup = () => {
     const [state, setState] = useState("Signup");
     const [formData,setFromData] = useState({
@@ -10,7 +11,8 @@ const LoginSignup = () => {
         email: "",
         password: "",
     })
-    const [isChecked, setIsChecked] = useState(true);
+    const [isChecked, setIsChecked] = useState(false);
+    const { AllProduct, cartItem, addToCart, removeFromCart, removeOneFromCart , setIsLoggedIn} = useContext(ShopContext);
     const navigate = useNavigate();
     const login = async (e)=>{
         e.preventDefault();
@@ -28,17 +30,18 @@ const LoginSignup = () => {
             if(responseData.success){
                 localStorage.setItem("auth-token", responseData.token); // auth-toekn is name of the token.
                 navigate("/");
+                setIsLoggedIn(true);
                 console.log(responseData);
             }
             else{
                 alert(responseData.error);
                 setFromData({
-                    name: "",
+                    username: "",
                     email: "",
                     password: "",
                 })
                 setIsChecked(false);
-                throw new Error("Failed to signup");
+                throw new Error("Failed to login");
             }
         }
         ).catch(err => console.log(err))
@@ -60,12 +63,13 @@ const LoginSignup = () => {
             if(responseData.success){
                 localStorage.setItem("auth-token", responseData.token); // auth-toekn is name of the token.
                 navigate("/");
+                setIsLoggedIn(true);
                 console.log(responseData);
             }
             else{
                 alert(responseData.error);
                 setFromData({
-                    name: "",
+                    username: "",
                     email: "",
                     password: "",
                 })

@@ -11,13 +11,18 @@ const Navbar = () => {
     const navigate = useNavigate();
     const {cartItem,AllProduct} = useContext(ShopContext);
     const countItem = ()=>{
-        let count = 0;
-        AllProduct.map(e =>{
-            if(cartItem[e.id] > 0){
-                count+=cartItem[e.id];
-            }
-        })
-        return count;
+        if(!localStorage.getItem("auth-token")){
+            return 0;
+        }
+        else{
+            let count = 0;
+            AllProduct.map(e =>{
+                if(cartItem[e.id] > 0){
+                    count+=cartItem[e.id];
+                }
+            })
+            return count;
+        }
     }
     const Logout = () =>{
         localStorage.removeItem("auth-token");
