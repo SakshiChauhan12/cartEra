@@ -8,6 +8,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const path = require("path");
 const bcrypt = require("bcrypt");
+const { randomInt } = require("crypto");
 // require("./conn/conn.js");
 
 //Database connection with mongoDB
@@ -293,7 +294,11 @@ app.post("/contact", async (req,res) =>{
   //creating api for newCollection data
   app.get("/newcollection", async (req, res) => {
     let products = await productObj.find({});
-    let newcollection = products.slice(-8);
+    let shuffledProducts = products;
+
+    shuffledProducts.sort(() => 0.5 - Math.random());
+    
+    let newcollection = shuffledProducts.slice(0,8);
     console.log("New Collection fetched");
     res.send(newcollection);
   });

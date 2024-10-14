@@ -3,7 +3,7 @@ import "./Navbar.css";
 import cart_icons from "../Assets/Navbar/cart_icon.png"
 import logo from "../Assets/Navbar/logo.png"
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ShopContext } from "../../Context/Context";
 import { useNavigate } from "react-router-dom";
 const Navbar = () => {

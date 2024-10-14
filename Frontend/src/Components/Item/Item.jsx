@@ -13,10 +13,10 @@ const Item = ({ product }) => {
                         <h3 className="font-semibold text-xl">{product.name}</h3>
                         <div className="cost flex space-x-2 justify-center">
                             <div className="old_cost font-semibold text-xl">
-                                ₹{product.new_cost}
+                                ₹{product.old_cost}
                             </div>
                             < div className="new_cost font-semibold text-xl">
-                                ₹{product.old_cost}
+                                ₹{product.new_cost}
                             </div>
 
                         </div>

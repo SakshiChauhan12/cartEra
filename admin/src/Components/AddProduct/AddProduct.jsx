@@ -62,7 +62,8 @@ const AddProduct = () => {
         }).then(data =>{
             if(data.success){
                 // navigate("/listproduct");
-                // alert("Product added successfully");
+                window.location.reload();
+                alert("Product added successfully");
             }
             else{
                 alert("Product is not added");
