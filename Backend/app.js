@@ -312,10 +312,16 @@ app.post("/contact", async (req,res) =>{
     res.send(trending_in_men);
   });
   app.get("/trendingkid", async (req, res) => {
-    let products = await productObj.find({ category: "kid" });
-    let trending_in_kid = products.slice(1).slice(-4);
-    console.log("Trending in kid fetched");
-    res.send(trending_in_kid);
+    try{
+
+        let products = await productObj.find({ category: "kids" });
+        let trending_in_kid = products.slice(-4);
+        console.log("Trending in kid fetched");
+        console.log(trending_in_kid);
+        res.send(trending_in_kid);
+    }catch(error){
+        console.log(error);
+    }
   });
   // creating middleware to fetch user
   const fetchUser = async(req, res, next) =>{

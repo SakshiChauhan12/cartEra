@@ -1,9 +1,9 @@
 import react, { useEffect } from "react";
 import { data_trending_product_women } from "../Assets/data_trending_product_women";
 import Item from "../Item/Item";
-import "./Trending.css"
+import "./TrendingWomen.css"
 import { useState } from "react";
-const Trending = () => {
+const TrendingWomen = () => {
     // console.log(data_trending_product_women)
     const [trendingWomen, setTrendingWomen] = useState([]);
     useEffect(() => {
@@ -30,7 +30,7 @@ const Trending = () => {
      );
 }
 
-export default Trending;
+export default TrendingWomen;
 
 
 

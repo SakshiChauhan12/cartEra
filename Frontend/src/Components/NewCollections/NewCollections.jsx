@@ -14,7 +14,7 @@ const NewCollection = () => {
         <div className="new-collection">
             <div className="text-4xl text-center text-gray-500">
                 <div className="">
-                    TRENDS
+                    TRENDING COLLECTIONS
                 </div>
                 <hr />
             </div>
