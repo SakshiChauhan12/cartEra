@@ -51,7 +51,7 @@ app.post("/upload", upload.single("productImage"), (req,res)=>{
     try{
         res.json({
             success: 1,
-            image_url:`http://localhost:${port}/images/${req.file.filename}`
+            image_url:`https://urbanstyling.onrender.com/images/${req.file.filename}`
         })
     }
     catch(error){
@@ -425,3 +425,30 @@ app.listen(port, (error) =>{
         console.log("Server is not connected", error);
     }
 })
+
+// const express = require('express');
+// const cors = require('cors');
+// const morgan = require('morgan');
+// const connectDB = require('./conn/conn.js');
+// const productRoutes = require('./routes/productRoutes');
+// const userRoutes = require('./routes/userRoutes');
+// require("dotenv").config();
+
+// const app = express();
+// const port = process.env.PORT || 4000;
+
+// // Connect to database
+// connectDB();
+
+// // Middleware
+// // app.use(express.json());
+// // app.use(cors());
+// // app.use(morgan('dev'));
+
+// // // Routes
+// // app.use('/api/products', productRoutes);
+// // app.use('/api/users', userRoutes);
+
+// app.listen(port, () => {
+//     console.log(`Server running at port ${port}`);
+// });
