@@ -7,7 +7,7 @@ const TrendingMen = () => {
     // console.log(data_trending_product_women)
     const [trendingMen, setTrendingMen] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:4000/trendingmen").then(res => res.json()).then(data => {
+        fetch("https://urbanstyling.onrender.com/trendingmen").then(res => res.json()).then(data => {
             setTrendingMen(data);
         })
     },[]);
