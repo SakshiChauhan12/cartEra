@@ -21,7 +21,7 @@ mongoose.connect(DB_URL)
         console.log("Connected to database");
     })
     .catch(error=>{
-        console.log("Failed to connect",err);
+        console.log("Failed to connect",error);
     })
 
 app.use(express.json());
