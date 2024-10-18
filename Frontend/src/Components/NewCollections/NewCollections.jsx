@@ -6,7 +6,7 @@ import { useState } from "react";
 const NewCollection = () => {
     const [newCollection, setNewCollection] = useState([]);
     useEffect(() => {   
-        fetch("http://localhost:4000/newcollection").then(res => res.json()).then(data => {
+        fetch("https://urbanstyling.onrender.com/newcollection").then(res => res.json()).then(data => {
             setNewCollection(data);
         })
     },[]);

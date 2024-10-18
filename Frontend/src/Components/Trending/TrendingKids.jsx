@@ -7,7 +7,7 @@ const TrendingKids = () => {
     // console.log(data_trending_product_women)
     const [trendingKids, setTrendingKids] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:4000/trendingkid").then(res => res.json()).then(data => {
+        fetch("https://urbanstyling.onrender.com/trendingkid").then(res => res.json()).then(data => {
             console.log(data);
             setTrendingKids(data);
         }).catch(error =>{

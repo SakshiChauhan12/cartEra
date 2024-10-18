@@ -18,7 +18,7 @@ const ShopContextProvider = (props) =>{
 
     useEffect(() => {
         console.log("inside the useEffect");
-        fetch("http://localhost:4000/allproduct").then(res => res.json()).then(data => {
+        fetch("https://urbanstyling.onrender.com/allproduct").then(res => res.json()).then(data => {
             setAllProduct(data);
         }).catch(error =>{
             console.log(error);
@@ -26,7 +26,7 @@ const ShopContextProvider = (props) =>{
         console.log(localStorage.getItem("auth-token"))
         if(localStorage.getItem("auth-token")){
             console.log("Inside the useEffect using localstorage")
-            fetch("http://localhost:4000/getcart",{
+            fetch("https://urbanstyling.onrender.com/getcart",{
                 method:"GET",
                 headers:{
                     "Accept":"application/json",
@@ -52,7 +52,7 @@ const ShopContextProvider = (props) =>{
 
             console.log(itemID);
             if(localStorage.getItem("auth-token")){
-                fetch("http://localhost:4000/addtocart", {
+                fetch("https://urbanstyling.onrender.com/addtocart", {
                     method: "POST",
                     headers:{
                         "Accept": "application/json",
@@ -69,7 +69,7 @@ const ShopContextProvider = (props) =>{
             console.log(itemID);
             setCartItem(prev =>({...prev, [itemID]: 0}))
             if(localStorage.getItem("auth-token")){
-                fetch("http://localhost:4000/removefromcart", {
+                fetch("https://urbanstyling.onrender.com/removefromcart", {
                     method: "POST",
                     headers:{
                         "Accept": "application/json",
@@ -84,7 +84,7 @@ const ShopContextProvider = (props) =>{
         const removeOneFromCart = (itemID) =>{
             setCartItem(prev =>({...prev, [itemID]: prev[itemID]-1}));
             if(localStorage.getItem("auth-token")){
-                fetch("http://localhost:4000/removefromcart", {
+                fetch("https://urbanstyling.onrender.com/removefromcart", {
                     method: "POST",
                     headers:{
                         "Accept": "application/json",
