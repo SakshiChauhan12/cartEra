@@ -1,7 +1,7 @@
 
 .footer{
-    height: 25vh;
     padding-top: 25px;
+    padding-bottom: 25px;
 }
 .copyright{
     border-top: 3px solid rgba(128, 128, 128, 0.318);
