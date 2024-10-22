@@ -16,6 +16,10 @@ const LoginSignup = () => {
     const navigate = useNavigate();
     const login = async (e)=>{
         e.preventDefault();
+        if(!isChecked){
+            alert("Please accept terms and conditions");
+            return;
+        }
         console.log("login", formData);
         let responseData;
         await fetch("http://localhost:4000/login", {
@@ -50,6 +54,10 @@ const LoginSignup = () => {
 
     const signup = async (e)=>{
         e.preventDefault();
+        if(!isChecked){
+            alert("Please accept the terms and conditions");
+            return;
+        }
         console.log("signup", formData);
         let responseData;
         await fetch("http://localhost:4000/register", {

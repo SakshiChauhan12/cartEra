@@ -25,7 +25,7 @@ const Footer = () => {
                     <li><Link to="">Products</Link></li>
                     <li><Link to="">Offices</Link></li>
                     <li><Link to="">About</Link></li>
-                    <li><Link to="">Contact</Link></li>
+                    <li><Link to="/contact">Contact</Link></li>
                 </ul>
                 <ul className="flex justify-center space-x-4 my-4 text-gray-500 ">
                     <li><Link to=""><img src={instagram} alt=""></img>

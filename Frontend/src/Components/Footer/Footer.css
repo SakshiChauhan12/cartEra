@@ -6,3 +6,6 @@
 .copyright{
     border-top: 3px solid rgba(128, 128, 128, 0.318);
 }
+ul li:hover{
+    transform: scale(1.1);
+}
