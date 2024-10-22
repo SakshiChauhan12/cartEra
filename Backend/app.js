@@ -9,6 +9,7 @@ const morgan = require("morgan");
 const path = require("path");
 const bcrypt = require("bcrypt");
 const { randomInt } = require("crypto");
+// const routes = require("./routes.js");
 // require("./conn/conn.js");
 
 //Database connection with mongoDB
@@ -23,6 +24,48 @@ mongoose.connect(DB_URL)
     .catch(error=>{
         console.log("Failed to connect",error);
     })
+
+
+
+// mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => {
+//         console.log('Connected to MongoDB');
+
+       
+
+//         // Update function
+//         const updateImageUrls = async () => {
+//             try {
+//                 // Find all products
+//                 const products = await productObj.find({});
+//                 console.log(`Found ${products.length} products to update.`);
+
+//                 // Loop through each product and update the image URL
+//                 for (const product of products) {
+//                     if (product.image.startsWith("http://localhost:4000/images/")) {
+//                         // Replace the URL
+//                         const newImageUrl = product.image.replace( "https://urbanstyling.onrender.com/images/","http://localhost:4000/images/");
+//                         product.image = newImageUrl;
+//                         await product.save(); // Save the updated product
+//                         console.log(`Updated product ${product.id}: ${newImageUrl}`);
+//                     }
+//                 }
+
+//                 console.log("All image URLs updated successfully.");
+//             } catch (error) {
+//                 console.error("Error updating image URLs:", error);
+//             } finally {
+//                 // Close the connection
+//                 mongoose.connection.close();
+//             }
+//         };
+
+//         // Call the update function
+//         updateImageUrls();
+//     })
+//     .catch(err => {
+//         console.error("MongoDB connection error:", err);
+//     });
 
 app.use(express.json());
 app.use(cors());
@@ -51,7 +94,7 @@ app.post("/upload", upload.single("productImage"), (req,res)=>{
     try{
         res.json({
             success: 1,
-            image_url:`https://urbanstyling.onrender.com/images/${req.file.filename}`
+            image_url:`http://localhost:4000/images/${req.file.filename}`
         })
     }
     catch(error){

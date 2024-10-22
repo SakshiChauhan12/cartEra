@@ -18,7 +18,7 @@ const LoginSignup = () => {
         e.preventDefault();
         console.log("login", formData);
         let responseData;
-        await fetch("https://urbanstyling.onrender.com/login", {
+        await fetch("http://localhost:4000/login", {
             method: "POST",
             headers: {
                 "Accept": "application/form-data",
@@ -52,7 +52,7 @@ const LoginSignup = () => {
         e.preventDefault();
         console.log("signup", formData);
         let responseData;
-        await fetch("https://urbanstyling.onrender.com/register", {
+        await fetch("http://localhost:4000/register", {
             method: "POST",
             headers: {
                 "Accept": "application/form-data",

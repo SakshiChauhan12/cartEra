@@ -24,7 +24,7 @@ const AddProduct = () => {
         let responseData={} ;
         let formData =  new FormData(); // it is the object help in manage the form to uplaod the image
         formData.append("productImage", image); // this is the postman productImage amd its value image... that we are share to backend.
-        fetch("https://urbanstyling.onrender.com/upload", {
+        fetch("http://localhost:4000/upload", {
             method: "POST",
             headers:{
                 "Accept": "application/json",  // accept means we are expecting to get json data from the server
@@ -41,7 +41,7 @@ const AddProduct = () => {
             product.image = responseData.image_url;
             if(responseData.success){
                 console.log(responseData);
-                return fetch("https://urbanstyling.onrender.com/addproduct", {
+                return fetch("http://localhost:4000/addproduct", {
                     method: "POST",
                     headers:{
                         "Accept": "application/json",

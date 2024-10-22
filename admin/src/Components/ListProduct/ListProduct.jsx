@@ -5,7 +5,7 @@ import {useState, useEffect} from "react";
 const ListProduct = () => {
     const [allProduct,setAllProduct] = useState([]);
     const fetchInfo = async () =>{
-        await fetch ("https://urbanstyling.onrender.com/allproduct")
+        await fetch ("http://localhost:4000/allproduct")
         .then(res => res.json())
         .then((data) =>{setAllProduct(data)});
     }
@@ -14,7 +14,7 @@ const ListProduct = () => {
     }, []);
 
     const removeProduct = async (id) =>{
-        await fetch("https://urbanstyling.onrender.com/removeproduct", {
+        await fetch("http://localhost:4000/removeproduct", {
             method: "POST",
             headers: {
                 "Accept": "application/json",
