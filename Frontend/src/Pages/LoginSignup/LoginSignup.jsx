@@ -23,7 +23,7 @@ const LoginSignup = () => {
         }
         console.log("login", formData);
         let responseData;
-        await fetch(`${REACT_APP_BACKEND_URL}/login`, {
+        await fetch(`${REACT_APP_BACKEND_URL}/user/login`, {
             method: "POST",
             headers: {
                 "Accept": "application/form-data",
@@ -61,7 +61,7 @@ const LoginSignup = () => {
         }
         console.log("signup", formData);
         let responseData;
-        await fetch(`${REACT_APP_BACKEND_URL}/register`, {
+        await fetch(`${REACT_APP_BACKEND_URL}/user/register`, {
             method: "POST",
             headers: {
                 "Accept": "application/form-data",
