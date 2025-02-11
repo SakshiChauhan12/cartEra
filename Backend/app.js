@@ -13,7 +13,7 @@ const { randomInt } = require("crypto");
 // require("./conn/conn.js");
 
 //Database connection with mongoDB
-const USER_NAME = "anshkg";
+const USER_NAME = "anirudh";
 const PASSWORD = "kg7983";
 const SMART_DB = "EcommerceDB"
 const DB_URL = `mongodb+srv://${USER_NAME}:${PASSWORD}@cluster0.9qazn.mongodb.net/${SMART_DB}`;
