@@ -3,11 +3,12 @@ import { data_trending_product_women } from "../Assets/data_trending_product_wom
 import Item from "../Item/Item";
 import "./TrendingKids.css"
 import { useState } from "react";
+import { REACT_APP_BACKEND_URL } from "../../utils";
 const TrendingKids = () => {
     // console.log(data_trending_product_women)
     const [trendingKids, setTrendingKids] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:4000/trendingkid").then(res => res.json()).then(data => {
+        fetch(`${REACT_APP_BACKEND_URL}/trendingkid`).then(res => res.json()).then(data => {
             console.log(data);
             setTrendingKids(data);
         }).catch(error =>{

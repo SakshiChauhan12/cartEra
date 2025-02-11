@@ -3,10 +3,11 @@ import new_collection from "../Assets/NewCollections"
 import Item from "../Item/Item";
 import "./NewCollection.css"
 import { useState } from "react";
+import { REACT_APP_BACKEND_URL } from "../../utils";
 const NewCollection = () => {
     const [newCollection, setNewCollection] = useState([]);
     useEffect(() => {   
-        fetch("http://localhost:4000/newcollection").then(res => res.json()).then(data => {
+        fetch(`${REACT_APP_BACKEND_URL}/newcollection`).then(res => res.json()).then(data => {
             setNewCollection(data);
         })
     },[]);

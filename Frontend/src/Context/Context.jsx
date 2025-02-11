@@ -1,8 +1,9 @@
-import react, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { createContext } from "react";
+import React from "react";
 // import AllProduct from "../Components/Assets/AllProduct.jsx"
+import { REACT_APP_BACKEND_URL } from "../utils";
 export const ShopContext = createContext(null);
-
 const getDefaultCart = () =>{
     // console.log("Hello cart items");
     let cart = {};
@@ -18,7 +19,7 @@ const ShopContextProvider = (props) =>{
 
     useEffect(() => {
         console.log("inside the useEffect");
-        fetch("http://localhost:4000/allproduct").then(res => res.json()).then(data => {
+        fetch(`${REACT_APP_BACKEND_URL}/allproduct`).then(res => res.json()).then(data => {
             setAllProduct(data);
         }).catch(error =>{
             console.log(error);
@@ -26,7 +27,7 @@ const ShopContextProvider = (props) =>{
         console.log(localStorage.getItem("auth-token"))
         if(localStorage.getItem("auth-token")){
             console.log("Inside the useEffect using localstorage")
-            fetch("http://localhost:4000/getcart",{
+            fetch(`${REACT_APP_BACKEND_URL}/getcart`,{
                 method:"GET",
                 headers:{
                     "Accept":"application/json",
@@ -52,7 +53,7 @@ const ShopContextProvider = (props) =>{
 
             console.log(itemID);
             if(localStorage.getItem("auth-token")){
-                fetch("http://localhost:4000/addtocart", {
+                fetch(`${REACT_APP_BACKEND_URL}/addtocart`, {
                     method: "POST",
                     headers:{
                         "Accept": "application/json",
@@ -69,7 +70,7 @@ const ShopContextProvider = (props) =>{
             console.log(itemID);
             setCartItem(prev =>({...prev, [itemID]: 0}))
             if(localStorage.getItem("auth-token")){
-                fetch("http://localhost:4000/removefromcart", {
+                fetch(`${REACT_APP_BACKEND_URL}/removefromcart`, {
                     method: "POST",
                     headers:{
                         "Accept": "application/json",
@@ -84,7 +85,7 @@ const ShopContextProvider = (props) =>{
         const removeOneFromCart = (itemID) =>{
             setCartItem(prev =>({...prev, [itemID]: prev[itemID]-1}));
             if(localStorage.getItem("auth-token")){
-                fetch("http://localhost:4000/removefromcart", {
+                fetch(`${REACT_APP_BACKEND_URL}/removefromcart`, {
                     method: "POST",
                     headers:{
                         "Accept": "application/json",

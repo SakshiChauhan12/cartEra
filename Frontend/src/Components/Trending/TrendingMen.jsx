@@ -3,11 +3,12 @@ import { data_trending_product_women } from "../Assets/data_trending_product_wom
 import Item from "../Item/Item";
 import "./TrendingMen.css"
 import { useState } from "react";
+import { REACT_APP_BACKEND_URL } from "../../utils";
 const TrendingMen = () => {
     // console.log(data_trending_product_women)
     const [trendingMen, setTrendingMen] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:4000/trendingmen").then(res => res.json()).then(data => {
+        fetch(`${REACT_APP_BACKEND_URL}/trendingmen`).then(res => res.json()).then(data => {
             setTrendingMen(data);
         })
     },[]);

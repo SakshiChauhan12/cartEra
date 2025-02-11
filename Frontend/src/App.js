@@ -13,7 +13,11 @@ import banner_men from "./Components/Assets/Banner/banner_men.png";
 import banner_women from "./Components/Assets/Banner/banner_women.png";
 import banner_kid from "./Components/Assets/Banner/banner_kids.png";
 import About from './Components/About/About';
+import { REACT_APP_BACKEND_URL } from './utils';
 function App() {
+  // const apiUrl = process.env.REACT_APP_BACKEND_URL;
+  console.log("API URL:", REACT_APP_BACKEND_URL);
+
   return (
     <div>
       <Router >

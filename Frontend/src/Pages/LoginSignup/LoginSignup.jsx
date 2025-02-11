@@ -4,6 +4,7 @@ import { useState } from "react";
 import {useNavigate} from "react-router-dom"
 import { useContext } from "react";
 import { ShopContext } from "../../Context/Context";
+import { REACT_APP_BACKEND_URL } from "../../utils";
 const LoginSignup = () => {
     const [state, setState] = useState("Signup");
     const [formData,setFromData] = useState({
@@ -22,7 +23,7 @@ const LoginSignup = () => {
         }
         console.log("login", formData);
         let responseData;
-        await fetch("http://localhost:4000/login", {
+        await fetch(`${REACT_APP_BACKEND_URL}/login`, {
             method: "POST",
             headers: {
                 "Accept": "application/form-data",
@@ -60,7 +61,7 @@ const LoginSignup = () => {
         }
         console.log("signup", formData);
         let responseData;
-        await fetch("http://localhost:4000/register", {
+        await fetch(`${REACT_APP_BACKEND_URL}/register`, {
             method: "POST",
             headers: {
                 "Accept": "application/form-data",
