@@ -7,7 +7,7 @@ import { REACT_APP_BACKEND_URL } from "../../utils";
 const NewCollection = () => {
     const [newCollection, setNewCollection] = useState([]);
     useEffect(() => {   
-        fetch(`${REACT_APP_BACKEND_URL}/newcollection`).then(res => res.json()).then(data => {
+        fetch(`${REACT_APP_BACKEND_URL}/product/newcollection`).then(res => res.json()).then(data => {
             setNewCollection(data);
         })
     },[]);

@@ -8,7 +8,7 @@ const TrendingMen = () => {
     // console.log(data_trending_product_women)
     const [trendingMen, setTrendingMen] = useState([]);
     useEffect(() => {
-        fetch(`${REACT_APP_BACKEND_URL}/trendingmen`).then(res => res.json()).then(data => {
+        fetch(`${REACT_APP_BACKEND_URL}/product/trendingmen`).then(res => res.json()).then(data => {
             setTrendingMen(data);
         })
     },[]);

@@ -3,6 +3,7 @@ import "./AddProduct.css";
 import upload_icon from "./../../assets/upload_area.svg"
 import { useState } from "react";
 import {useNavigate} from "react-router-dom"
+import {REACT_APP_BACKEND_URL} from "../../utils"
 const AddProduct = () => {
     const [image, setImage] = useState(false);
     const navigate  = useNavigate();
@@ -24,7 +25,7 @@ const AddProduct = () => {
         let responseData={} ;
         let formData =  new FormData(); // it is the object help in manage the form to uplaod the image
         formData.append("productImage", image); // this is the postman productImage amd its value image... that we are share to backend.
-        fetch("http://localhost:4000/upload", {
+        fetch(`${REACT_APP_BACKEND_URL}/upload`, {
             method: "POST",
             headers:{
                 "Accept": "application/json",  // accept means we are expecting to get json data from the server
@@ -41,7 +42,7 @@ const AddProduct = () => {
             product.image = responseData.image_url;
             if(responseData.success){
                 console.log(responseData);
-                return fetch("http://localhost:4000/addproduct", {
+                return fetch(`${REACT_APP_BACKEND_URL}/addproduct`, {
                     method: "POST",
                     headers:{
                         "Accept": "application/json",
