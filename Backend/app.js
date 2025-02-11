@@ -239,21 +239,6 @@ function comparePassword(loginPassword,passwordinDB){
 }
 //Creating Endpoint for registering the user
 app.post("/register", async (req,res) =>{
-    // let username = req.body.username;
-    // let password = req.body.password;
-    // password = hashedPassword(password);
-    // let email = req.body.email;
-    // let obj = {email,username,password};
-    // console.log(obj);
-    // userObj.create(obj)
-    // .then(user =>{
-    //     console.log("User is created succesfully");
-    //     res.status(200).json({message:"Created succesfully"});
-    // }).catch(error =>{
-    //     console.log(error);
-    //     console.log("User is already existed");
-    //     res.json({message: "User is already existed"});
-    // })
     console.log("hello");
     try{
         let check = await userObj.findOne({email: req.body.email});
@@ -390,6 +375,7 @@ app.post("/contact", async (req,res) =>{
         }
     }
   }
+
   //creating endpoint for adding products in cartdata
   app.post("/addtocart", fetchUser,async (req, res) => {
     console.log(req.body.itemID);
