@@ -10,7 +10,7 @@ const Item = ({ product }) => {
                 <Link to={`/product/${product.id}`}>
                     <div className="item-cards" key={product.id}>
                         <img onClick={window.scrollTo(0,0)} src={product.image} alt="" className="item-image" />
-                        <h3 className="font-semibold text-xl">{product.name}</h3>
+                        <h3 className="font-semibold text-md md:text-xl">{product.name}</h3>
                         <div className="cost flex space-x-2 justify-center">
                             <div className="old_cost font-semibold text-xl">
                                 ₹{product.old_cost}

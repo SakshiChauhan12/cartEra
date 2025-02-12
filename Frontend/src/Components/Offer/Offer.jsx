@@ -1,24 +1,31 @@
+
 import React from "react";
-import "./Offer.css"
-import exclusive_img from "../Assets/Offer/exclusive_image.png"
+import "./Offer.css";
+import exclusive_img from "../Assets/Offer/exclusive_image.png";
+
 const Offer = () => {
     return ( 
-        <div className='offer flex justify-around items-center'>
-            <div className='ml-4'>
-                <div className='offer-left flex items-center justify-center space-y-4 ml-3'>
-                    <img src="" alt=""></img>
-                    <div className="text-7xl space-y-6 font-bold">
+        <div className='offer flex flex-col md:flex-row justify-center items-center px-4 md:px-12 py-8 gap-6'>
+            {/* Left Content Section */}
+            <div className='w-full md:w-1/2 flex flex-col items-center text-left  space-y-6 ml-3'>
+                <div className='offer-left space-y-4'>
+                    <h1 className="text-4xl  md:text-7xl font-bold leading-tight">
                         Exclusive<br />
-                        Only For You<br />
-                        <div className="text-base">ON THE BEST SELLER</div>
-                    </div>
-                </div >
-                <button className='button flex text-2xl p-6 mx-4 mt-3'>Check 'em out 
+                        Only For You
+                    </h1>
+
+                </div>
+                <button className='button text-lg md:text-2xl px-6 py-3 md:p-6 mt-3'>
+                    Check 'em out 
                 </button>
-            </div >
-            <img src={exclusive_img} alt="" className="offer-right" />
+            </div>
+
+            {/* Right Image Section */}
+            <div className="w-full md:w-1/2 flex justify-center">
+                <img src={exclusive_img} alt="Exclusive Offer" className="offer-right w-3/4 md:w-full max-w-md md:max-w-lg" />
+            </div>
         </div>
-     );
+    );
 }
- 
+
 export default Offer;
