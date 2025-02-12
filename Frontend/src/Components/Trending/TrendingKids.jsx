@@ -17,7 +17,7 @@ const TrendingKids = () => {
     },[]);
     return ( 
         <div className="trending">
-            <div className="text-4xl text-center text-gray-500">
+            <div className="text-4xl md:text- text-center text-gray-500">
                 <div className="">
                     TRENDING IN KIDS
                 </div>

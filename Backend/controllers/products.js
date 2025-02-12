@@ -61,7 +61,7 @@ const newCollection = async (req, res) => {
 
     shuffledProducts.sort(() => 0.5 - Math.random());
     
-    let newcollection = shuffledProducts.slice(0,8);
+    let newcollection = shuffledProducts.slice(0,4);
     console.log("New Collection fetched");
     res.send(newcollection);
   }

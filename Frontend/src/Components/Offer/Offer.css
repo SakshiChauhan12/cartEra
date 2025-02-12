@@ -1,13 +1,41 @@
-.button{
+
+.button {
     background-color: #ff4141;
     color: white;
     border-radius: 75px;
+    transition: transform 0.3s ease-in-out;
 }
-.offer{
-    background: linear-gradient(180deg, white, rgba(233, 189, 189, 0.6) 60%); 
+
+.button:hover {
+    transform: scale(1.05);
 }
-.offer-right{
+
+.offer {
+    background: linear-gradient(180deg, white, rgba(233, 189, 189, 0.6) 60%);
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.offer-right {
     display: flex;
-    flex: 0.4;     /*grow:0 shrink:1 basis:30%*/
-    /* margin-top: 20px; */
+    flex: 0.4;
 }
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .offer {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .offer-left {
+        margin: 0 auto;
+    }
+
+    .offer-right {
+        margin-top: 2rem;
+        width: 80%;
+    }
+}
+

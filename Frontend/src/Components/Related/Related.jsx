@@ -23,7 +23,7 @@ const Related = ({category }) => {
     const related_product_data = getRelatedProductsForCategory(category, AllProduct)
     return ( 
         <div className="related">
-            <h1>RELATED PRODUCTS</h1>
+            <h1 className="text-3xl text-slate-400">RELATED PRODUCTS</h1>
             <hr />
             <div className="related-item">{
                     related_product_data.map(product =>{

@@ -11,6 +11,24 @@
 .new-collection-item{
     display: grid;
     /* grid-template-columns: repeat(auto-fit, minmax(250px , 1fr)); */
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
     gap: 20px;
 }
+
+/* Ensure a minimum of 2 and a maximum of 4 columns */
+@media (max-width: 600px) {
+    .new-collection-item {
+        grid-template-columns: repeat(2, 1fr); /* At least 2 columns on small screens */
+    }
+}
+
+@media (min-width: 1024px) {
+    .new-collection-item {
+        grid-template-columns: repeat(4, 1fr); /* Up to 4 columns on large screens */
+    }
+}
+
+
+
+
+
