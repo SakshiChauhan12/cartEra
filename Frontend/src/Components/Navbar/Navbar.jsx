@@ -45,8 +45,8 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center">
             <img src={logo} alt="" className="h-8 w-auto" />
             <div className="ml-2">
-              <span className="text-orange-600 font-bold">Urban</span>
-              <span className="font-semibold text-gray-500">Styling</span>
+              <span className="text-orange-600 font-bold">cart</span>
+              <span className="font-semibold text-gray-500">Era</span>
             </div>
           </div>
 

@@ -19,8 +19,8 @@ const Footer = () => {
                         className="h-12 w-auto md:h-16"
                     />
                     <div className="text-xl md:text-2xl">
-                        <span className="text-red-600 font-bold">Urban</span>
-                        <span className="text-gray-500 font-extrabold">Styling</span>
+                        <span className="text-red-600 font-bold">cart</span>
+                        <span className="text-gray-500 font-extrabold">Era</span>
                     </div>
                 </div>
 
@@ -80,7 +80,7 @@ const Footer = () => {
 
                 {/* Copyright Section */}
                 <div className="my-4 pt-4 text-center text-gray-500 text-sm md:text-lg border-t border-gray-300">
-                    &copy;2024 by UrbanStyling.
+                    &copy;2024 by cartEra.
                     <br className="md:hidden" />
                     <span className="hidden md:inline"> </span>
                     All Rights Reserved Proudly by MIT Students
